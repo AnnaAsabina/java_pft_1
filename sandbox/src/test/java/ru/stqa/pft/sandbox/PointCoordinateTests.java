@@ -9,6 +9,7 @@ public class PointCoordinateTests {
   public void testDistance() {
     Point p1 = new Point(9, 10);
     Point p2 = new Point(3, 11);
-    Assert.assertEquals(p1.distance(p2), 6.082762530298219);
+    Assert.assertEquals(Math.round(p1.distance(p2)*100.0)/100.0, 6.08);
+
   }
 }
