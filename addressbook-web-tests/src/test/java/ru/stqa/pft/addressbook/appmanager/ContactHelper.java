@@ -78,6 +78,12 @@ public class ContactHelper extends HelperBase {
     returnHomePage();
   }
 
+  public void modifyContact(int index, ContactData contact) {
+    initContactModification(index);
+    fillContactForm(contact,false);
+    submitContactModification();
+    returnHomePage();
+  }
   public boolean isContactExist() {
     return isElementPresent(By.name("selected[]"));
   }
@@ -86,6 +92,7 @@ public class ContactHelper extends HelperBase {
   public int getContactCount() {
             return  wd.findElements(By.name("selected[]")).size();
        }
+
 
 
 
