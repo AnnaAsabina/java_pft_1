@@ -3,8 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.*;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.Comparator;
@@ -17,15 +15,15 @@ public class ContactCreationTests extends TestBase {
   @Test(enabled = true)
 
   public void contactCreationTests() {
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().initContactCreation();
-  ContactData contact = new ContactData("Annatest2", "Pvalovnatest", "Asabinatest", "Adresstest", "+7888888888888", "anna@test.test","test1");
-    app.getContactHelper().creationContact(contact,true);
-    List<ContactData> after = app.getContactHelper().getContactList();
+    List<ContactData> before = app.contact().list();
+    app.contact().initContactCreation();
+  ContactData contact = new ContactData().withFirstName("Annatest2").withMiddleName("Pvalovnatest").withLastName("Asabinatest").withAddress("Adresstest").withMobile("+7888888888888").witheMail("anna@test.test").withGroup("test1");
+    app.contact().create(contact,true);
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
 
-    contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    contact.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(contact);
     Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
 

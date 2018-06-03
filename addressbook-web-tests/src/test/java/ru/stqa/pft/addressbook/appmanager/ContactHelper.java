@@ -71,18 +71,25 @@ public class ContactHelper extends HelperBase {
 
 
 
-  public void creationContact(ContactData contact, boolean b) {
+  public void create(ContactData contact, boolean b) {
     initContactCreation();
     fillContactForm(contact,true);
     submitContact();
     returnHomePage();
   }
 
-  public void modifyContact(int index, ContactData contact) {
+  public void modify(int index, ContactData contact) {
     initContactModification(index);
     fillContactForm(contact,false);
     submitContactModification();
     returnHomePage();
+  }
+
+  public void delete(int index) {
+   selectContact(index);
+    deleteSelectedContact();
+    closeAlert();
+    homePage();;
   }
   public boolean isContactExist() {
     return isElementPresent(By.name("selected[]"));
@@ -97,15 +104,14 @@ public class ContactHelper extends HelperBase {
 
 
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
            List<ContactData> contacts = new ArrayList<ContactData>();
           List<WebElement> elements = wd.findElements(By.xpath("//table[@id='maintable']//tr[@name='entry']"));
            for (WebElement element : elements){
                   String userLastname = element.findElement(By.xpath(".//td[2]")).getText();
                   String userName = element.findElement(By.xpath(".//td[3]")).getText();
                   int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-                  ContactData contact = new ContactData(id, userName,null,userLastname,null,null,null,null);
-                  contacts.add(contact);
+                  contacts.add(new ContactData().withId(id).withFirstName(userName).withLastName(userLastname));
              }
          return contacts;
         }
