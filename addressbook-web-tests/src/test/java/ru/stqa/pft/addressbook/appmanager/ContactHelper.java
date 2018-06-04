@@ -68,9 +68,10 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public void initContactModification() {
 
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+  public void initContactModification(int index) {
+
+    click(By.xpath("//table[@id='maintable']/tbody/tr"+"["  +index+  "]"+"/td[8]/a/img"));
   }
 
   public void submitContactModification() {
@@ -88,7 +89,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void modify(ContactData contact) {
-    initContactModification();
+    initContactModification(contact.getIndex());
     fillContactForm(contact,false);
     submitContactModification();
     returnHomePage();

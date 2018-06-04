@@ -11,7 +11,9 @@ public class ContactData {
   private  String mobile;
   private  String eMail;
   private  String group;
-  private int id = Integer.MAX_VALUE;;
+  private int id = Integer.MAX_VALUE;
+  private int index;
+
 
   @Override
   public boolean equals(Object o) {
@@ -63,7 +65,14 @@ public class ContactData {
 
   public int getId() { return id; }
 
+  public int getIndex() {
+    return index;
+  }
 
+  public ContactData withIndex(int index) {
+    this.index = index;
+    return this;
+  }
 
 
   public ContactData withId(int id) { this.id = id;
