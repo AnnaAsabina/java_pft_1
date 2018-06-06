@@ -48,8 +48,8 @@ public class ContactHelper extends HelperBase {
   }
 
   public void initContactCreation() {
-
     click(By.linkText("add new"));
+    contactCache = null;
   }
 
   public void selectContact(int index) {
@@ -116,6 +116,7 @@ public class ContactHelper extends HelperBase {
 
 
   public int count() {
+    contactCache = null;
             return  wd.findElements(By.name("selected[]")).size();
        }
 
@@ -131,10 +132,10 @@ public class ContactHelper extends HelperBase {
       for (WebElement row: rows){
         List<WebElement> cells = row.findElements(By.tagName("td"));
         int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
-        String firstname = cells.get(1).getText();
-        String lastname = cells.get(2).getText();
+        String firstname = cells.get(2).getText();
+        String lastname = cells.get(1).getText();
         String[] phones = cells.get(5).getText().split("\n");
-        contactCache.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)
+        contactCache.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname).withGroup(null)
                 .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
     }
       return new Contacts(contactCache);

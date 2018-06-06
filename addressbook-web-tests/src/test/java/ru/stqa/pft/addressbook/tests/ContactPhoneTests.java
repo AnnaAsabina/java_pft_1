@@ -15,10 +15,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactPhoneTests extends TestBase {
 
   @BeforeMethod
-  public void ensurePreconditions() {
-    if (app.contact().all().size() == 0) {
-      app.contact().create(new ContactData().withFirstName("testFirstName1").withGroup("test1"),true); }
-  }
+   public void ensurePreconditions() {
+           app.goTo().goToHomePage();
+            if (app.contact().all().size() == 0) {
+                 app.contact().create(new ContactData().withFirstName("testFirstName1").withHomePhone("11111").withMobilePhone("22222").withWorkPhone("333333").withGroup("test1"), true);
+              }
+        }
+
+
 
   @Test
   public void testContactPhones() {
