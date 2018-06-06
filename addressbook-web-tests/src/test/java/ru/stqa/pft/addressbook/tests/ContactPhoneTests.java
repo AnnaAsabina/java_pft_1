@@ -15,13 +15,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactPhoneTests extends TestBase {
 
   @BeforeMethod
-   public void ensurePreconditions() {
-           app.goTo().goToHomePage();
-            if (app.contact().all().size() == 0) {
-                 app.contact().create(new ContactData().withFirstName("testFirstName1").withHomePhone("11111").withMobilePhone("22222").withWorkPhone("333333").withGroup("test1"), true);
-              }
-        }
-
+  public void ensurePreconditions() {
+    app.goTo().goToHomePage();
+    if (app.contact().all().size() == 0) {
+      app.contact().create(new ContactData().withFirstName("testFirstName1").withHomePhone("11111").withMobilePhone("22222").withWorkPhone("333333").withGroup("test1"), true);
+    }
+  }
 
 
   @Test
@@ -30,12 +29,16 @@ public class ContactPhoneTests extends TestBase {
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-    assertThat(contact.getHomePhone(), equalTo(contactInfoFromEditForm.getHomePhone()));
-    assertThat(contact.getMobilePhone(), equalTo(contactInfoFromEditForm.getMobilePhone()));
-    assertThat(contact.getWorkPhone(), equalTo(contactInfoFromEditForm.getWorkPhone()));
-     }
+    assertThat(contact.getHomePhone(), equalTo(cleaned(contactInfoFromEditForm.getHomePhone())));
+    assertThat(contact.getMobilePhone(), equalTo(cleaned(contactInfoFromEditForm.getMobilePhone())));
+    assertThat(contact.getWorkPhone(), equalTo(cleaned (contactInfoFromEditForm.getWorkPhone())));
+
 
   }
 
+  public static String cleaned(String phone) {
+    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+  }
 
+}
 

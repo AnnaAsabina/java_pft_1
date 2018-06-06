@@ -7,14 +7,10 @@ public class ContactData {
   private  String middleName;
   private  String lastName;
   private  String address;
-  private  String mobile;
   private  String eMail;
   private  String group;
   private int id = Integer.MAX_VALUE;
   private int index;
-
-
-
   private String allPhones;
   private String homePhone;
   private String mobilePhone;
@@ -60,25 +56,23 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
   public ContactData withAddress(String address) {
     this.address = address;
     return this;
   }
 
-  public ContactData withMobile(String mobile) {
-    this.mobile = mobile;
-    return this;
-  }
 
   public ContactData witheMail(String eMail) {
     this.eMail = eMail;
     return this;
   }
 
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
+
 
   public ContactData withAllEmails(String allEmails) {
     this.allEmails = allEmails;
@@ -127,7 +121,7 @@ public class ContactData {
   }
 
   public String getMobilePhone() {
-    return mobile;
+    return mobilePhone;
   }
 
   public String geteMail() {
@@ -206,6 +200,7 @@ public class ContactData {
                             ", lastName='" + lastName + '\'' +
                            '}';
        }
+
 
 
 }
