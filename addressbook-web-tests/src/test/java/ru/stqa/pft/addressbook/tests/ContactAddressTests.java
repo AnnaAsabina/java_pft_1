@@ -16,7 +16,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
     public void ensurePreconditions() {
       app.goTo().goToHomePage();
       if (app.contact().all().size() == 0) {
-        app.contact().create(new ContactData().withFirstName("Annatest2").withLastName("Asabinatest").withHomePhone("111").withMobilePhone("222").withWorkPhone("333").withAddress("Kosmonavtov26").withGroup("test1"), true);
+        app.contact().create(new ContactData().withFirstName("Annatest2").withLastName("Asabinatest").withHomePhone("111").withMobilePhone("222").withWorkPhone("333").withEmail1("email1").withEmail2("email2").withEmail3("email3").withAddress("Kosmonavtov26").withGroup("test1"), true);
       }
     }
 
