@@ -1,5 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: org.seleniumhq.selenium:selenium-remote-driver:3.8.1">
+    <ANNOTATIONS>
+      <root url="file://$PROJECT_DIR$/addressbook-web-tests" />
+    </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.seleniumhq.selenium/selenium-remote-driver/3.8.1/f2e493ccd447e36c7bb97bd3d872ed1d7dada6cf/selenium-remote-driver-3.8.1.jar!/" />
     </CLASSES>
