@@ -15,16 +15,18 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import static org.openqa.selenium.remote.BrowserType.*;
+
 public class ApplicationManager {
-  WebDriver wd;
   private final Properties properties;
+  WebDriver wd;
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
   private ContactHelper contactHelper;
   private String browser;
 
-  public ApplicationManager(String browser) throws IOException {
+  public ApplicationManager(String browser) {
     this.browser = browser;
     properties =new Properties();
   }
@@ -33,15 +35,12 @@ public class ApplicationManager {
   public void init() throws IOException {
 
     String target = System.getProperty("target", "local");
-
-    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties",target))));
-
-
-    if (Objects.equals(browser, BrowserType.FIREFOX)){
+     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+    if (Objects.equals(browser, FIREFOX)){
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-    } else if (Objects.equals(browser, BrowserType.CHROME)){
+    } else if (Objects.equals(browser, CHROME)){
       wd = new ChromeDriver();
-    } else if (Objects.equals(browser, BrowserType.IE)){
+    } else if (Objects.equals(browser, IE)){
       wd = new InternetExplorerDriver();
     }
 
