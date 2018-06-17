@@ -12,7 +12,13 @@ dependencies {
     compile 'com.thoughtworks.xstream:xstream:1.4.9'
     compile 'com.google.code.gson:gson:2.8.5'
     compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'mysql:mysql-connector-java:8.0.11'
+    compile Java.options.encoding = 'UTF-8'
+
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 
 
 task testGroups(type: Test) {
@@ -44,4 +50,4 @@ task testGroups(type: Test) {
     }
 
 
-}
+}}
