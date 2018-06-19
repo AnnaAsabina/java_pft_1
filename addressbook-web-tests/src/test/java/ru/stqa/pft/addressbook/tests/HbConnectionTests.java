@@ -50,6 +50,7 @@ public class HbConnectionTests {
     }
     session.getTransaction().commit();
     session.close();
+  }
 
   }
-  }
+
