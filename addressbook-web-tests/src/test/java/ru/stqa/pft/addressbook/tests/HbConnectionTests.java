@@ -16,11 +16,10 @@ import java.util.List;
 public class HbConnectionTests {
 
 
+
   private SessionFactory sessionFactory;
 
   @BeforeClass
-
-
 
   protected void setUp() throws Exception {
     // A SessionFactory is set up once for an application!
@@ -43,12 +42,10 @@ public class HbConnectionTests {
   @Test
   public void hbConnection() {
 
-
-
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<GroupData> result = session.createQuery("from GroupData").list();
-    for (GroupData group :  result) {
+    for (GroupData group : result) {
       System.out.println(group);
     }
     session.getTransaction().commit();
