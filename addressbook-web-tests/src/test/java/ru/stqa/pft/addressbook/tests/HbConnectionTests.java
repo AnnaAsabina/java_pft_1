@@ -2,13 +2,15 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.hibernate.MetadataSources;
+
 
 
 public class HbConnectionTests {
   private Object sessionFactory;
 
   @BeforeClass
+
+
 
   protected void setUp() throws Exception {
     // A SessionFactory is set up once for an application!
@@ -24,6 +26,8 @@ public class HbConnectionTests {
       StandardServiceRegistryBuilder.destroy( registry );
     }
   }
+
+
 
 
   @Test
