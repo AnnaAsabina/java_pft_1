@@ -40,7 +40,7 @@ public class HbConnectionTests {
 
 
   @Test
-  public void hbConnection() {
+  public void hbConnection()  {
 
     Session session = sessionFactory.openSession();
     session.beginTransaction();
