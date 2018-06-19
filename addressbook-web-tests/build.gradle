@@ -13,13 +13,15 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.5'
     compile 'ch.qos.logback:logback-classic:1.2.3'
     compile 'mysql:mysql-connector-java:8.0.11'
-    compile Java.options.encoding = 'UTF-8'
     compile 'org.hibernate:hibernate-core:5.3.1.Final'
 
 }
+compileJava.options.encoding = 'UTF-8'
+
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
 
 
 task testGroups(type: Test) {
@@ -35,6 +37,7 @@ task testGroups(type: Test) {
     if (project.hasProperty('target')) {
         systemProperty 'target', "${target}"
     }
+}
 
     task testContacts(type: Test) {
         useTestNG {
@@ -44,11 +47,10 @@ task testGroups(type: Test) {
             systemProperty 'browser', "${browser}"
         }
 
+
+
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
     }
 
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-
-
-}}
