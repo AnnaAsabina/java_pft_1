@@ -51,7 +51,6 @@ public class ContactData {
     result = 31 * result + (email2 != null ? email2.hashCode() : 0);
     result = 31 * result + (email3 != null ? email3.hashCode() : 0);
     result = 31 * result + (address != null ? address.hashCode() : 0);
-    result = 31 * result + (photo != null ? photo.hashCode() : 0);
     return result;
   }
 
@@ -72,7 +71,6 @@ public class ContactData {
             ", email1='" + email1 + '\'' +
             ", email2='" + email2 + '\'' +
             ", email3='" + email3 + '\'' +
-            ", photo='" + photo + '\'' +
             ", address='" + address + '\'' +
             '}';
   }
