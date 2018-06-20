@@ -9,7 +9,8 @@
     "email1": "test10@test.ru",
     "email2": "test20@test.ru",
     "email3": "test30@test.ru",
-    "address": "address0"
+    "address": "address0",
+    "photo":"src/test/resources/flower.jpg"
   },
   {
     "firstName": "firstName1",
@@ -21,7 +22,8 @@
     "email1": "test11@test.ru",
     "email2": "test21@test.ru",
     "email3": "test31@test.ru",
-    "address": "address1"
+    "address": "address1",
+    "photo":"src/test/resources/flower.jpg"
   },
   {
     "firstName": "firstName2",
@@ -33,6 +35,7 @@
     "email1": "test12@test.ru",
     "email2": "test22@test.ru",
     "email3": "test32@test.ru",
-    "address": "address2"
+    "address": "address2",
+    "photo":"src/test/resources/flower.jpg"
   }
 ]

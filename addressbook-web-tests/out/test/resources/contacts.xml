@@ -12,6 +12,7 @@
     <email2>test20@test.ru</email2>
     <email3>test30@test.ru</email3>
     <address>address0</address>
+    <photo>src/test/resources/flower.jpg</photo>
   </contact>
   <contact>
     <firstName>firstName1</firstName>
@@ -26,6 +27,7 @@
     <email2>test21@test.ru</email2>
     <email3>test31@test.ru</email3>
     <address>address1</address>
+    <photo>src/test/resources/flower.jpg</photo>
   </contact>
   <contact>
     <firstName>firstName2</firstName>
@@ -40,5 +42,6 @@
     <email2>test22@test.ru</email2>
     <email3>test32@test.ru</email3>
     <address>address2</address>
+    <photo>src/test/resources/flower.jpg</photo>
   </contact>
 </list>

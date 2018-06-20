@@ -55,15 +55,6 @@ public class ContactData {
   @Type(type ="text")
   private String workPhone;
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", id=" + id +
-            '}';
-  }
-
   @Transient
   private String allEmails;
 
@@ -79,6 +70,7 @@ public class ContactData {
   @Transient
   private String email3;
 
+
   @Column(name = "photo")
   @Type(type ="text")
   private String photo;
@@ -89,6 +81,14 @@ public class ContactData {
   private String address;
 
 
+  public File getPhoto() {
+    return new File(photo);
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo.getPath();
+    return this;
+  }
 
 
   public ContactData withAddress(String address) {
@@ -115,10 +115,7 @@ public class ContactData {
   }
 
 
-  public ContactData withPhoto(File photo) {
-    this.photo = photo.getPath();
-    return this;
-  }
+
 
 
   public ContactData withId(int id) { this.id = id;
@@ -254,9 +251,7 @@ public class ContactData {
     return allPhones;
   }
 
-  public File getPhoto() {
-    return new File (photo);
-  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -278,5 +273,14 @@ public class ContactData {
     return result;
   }
 
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", id=" + id +
+            '}';
+  }
 
 }
