@@ -23,6 +23,7 @@ public class GroupDeletionTests extends TestBase {
     
     @Test (enabled = true)
     public void testGroupDeletion() {
+        app.goTo().GroupPage();
         Groups before = app.db().groups();
         GroupData deletedGroup =  before.iterator().next();
         app.group().delete(deletedGroup);
