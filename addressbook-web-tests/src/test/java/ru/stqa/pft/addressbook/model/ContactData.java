@@ -67,13 +67,13 @@ public class ContactData {
   private String email2;
 
   @Expose
-  @Transient
+  @Column(name = "email3")
   private String email3;
 
 
   @Column(name = "photo")
   @Type(type ="text")
-  private String photo;
+  private String photo = "src/test/resources/flower.jpg";
 
   @Expose
   @Column(name = "address")
