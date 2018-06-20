@@ -17,12 +17,12 @@ public class ContactData {
   private  String firstName;
   @XStreamOmitField
   private  String middleName;
+
   @Expose
   @Column(name = "lastname")
   private  String lastName;
 
-  @Column(name = "email")
-  @Type(type ="text")
+  @Transient
   private  String eMail;
 
   @Expose
@@ -59,15 +59,18 @@ public class ContactData {
   private String allEmails;
 
   @Expose
-  @Transient
+  @Column(name = "email")
+  @Type(type = "text")
   private String email1;
 
   @Expose
-  @Transient
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
 
   @Expose
   @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
 
 
