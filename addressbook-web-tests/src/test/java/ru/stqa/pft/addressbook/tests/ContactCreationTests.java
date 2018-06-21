@@ -63,7 +63,8 @@ public class ContactCreationTests extends TestBase {
   public void ensurePreconditions(){
     if(app.db().groups().size()==0){
       app.goTo().GroupPage();
-      app.group().create(new GroupData().withName("test1'"));
+      app.group().create(new GroupData().withName("NameTest").withFooter("FooterTest").withHeader("HeaderTest"));
+
     }
   }
 
@@ -72,8 +73,8 @@ public class ContactCreationTests extends TestBase {
     Groups groups = app.db().groups();
     app.goTo().goToHomePage();
     Contacts before = app.db().contacts();
-    app.contact().initContactCreation();
 
+    app.contact().initContactCreation();
     app.contact().create(contact.inGroup(groups.iterator().next()),true);
     assertThat(app.contact().count(),equalTo( before.size() + 1));
     Contacts after = app.db().contacts();
