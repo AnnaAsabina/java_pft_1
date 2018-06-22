@@ -23,7 +23,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
         app.group().create(new GroupData().withName("testName").withFooter("FooterTest").withHeader("HeaderTest"));
         groups = app.db().groups();
       }
-      
+
       app.goTo().goToHomePage();
       if (app.db().contacts().size()==0) {
         app.contact().create(new ContactData().withFirstName("Annatest2").withLastName("Asabinatest").withHomePhone("111").withMobilePhone("222").withWorkPhone("333").withEmail1("email1").withEmail2("email2").withEmail3("email3").withAddress("Kosmonavtov26").inGroup(groups.iterator().next()),true);
