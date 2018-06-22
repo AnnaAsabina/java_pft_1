@@ -118,8 +118,15 @@ public class ContactHelper extends HelperBase {
     homePage();
   }
 
+  public void selectedAddedContactById(int id){
+           wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
+       }
 
-
+  public void addInGroupById(int id){
+    click(By.cssSelector("select[name='to_group']"));
+    click(By.cssSelector(".right>select>option[value='" + id + "']"));
+     click(By.name("add"));
+     }
 
   public boolean isContactExist() {
     return isElementPresent(By.name("selected[]"));
