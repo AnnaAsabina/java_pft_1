@@ -69,9 +69,9 @@ public class AddingContactToGroupTests extends TestBase {
     app.goTo().goToHomePage();
     app.contact().selectContactById(selectedContact.getId());
     app.contact().addInGroupById(selectedGroup.getId());
-    app.goTo().selectGroupPage(selectedGroup.getId());
+   app.goTo().selectGroupPage(selectedGroup.getId());
 
-    ContactData contactAfter = app.db().selectedcontactById(selectedContact.getId()).iterator().next();
+    ContactData contactAfter = app.db().contactById(selectedContact.getId()).iterator().next();
     Groups groupsContactAfter = contactAfter.getGroups();
 
     assertThat(groupsContactAfter, equalTo(groupSelectedContact.withAdded(selectedGroup)));

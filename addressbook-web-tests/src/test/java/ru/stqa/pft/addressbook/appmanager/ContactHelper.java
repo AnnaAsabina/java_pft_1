@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
@@ -119,14 +120,15 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectedAddedContactById(int id){
-           wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
+          click(By.cssSelector("input[id='" + id + "']"));
        }
 
   public void addInGroupById(int id){
-    click(By.cssSelector("select[name='to_group']"));
-    click(By.cssSelector(".right>select>option[value='" + id + "']"));
-     click(By.name("add"));
-     }
+    Select selectGroup = new Select(wd.findElement(By.cssSelector("select[name='to_group']")));
+    selectGroup.selectByValue(Integer.toString(id));
+    click(By.name("add"));
+    }
+
 
   public boolean isContactExist() {
     return isElementPresent(By.name("selected[]"));
