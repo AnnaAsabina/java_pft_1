@@ -33,14 +33,6 @@ public class ApplicationManager {
 
     String target = System.getProperty("target", "local");
      properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
-
-
-
-
-    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    wd.get(properties.getProperty("web.baseUrl"));
-
   }
 
   public void stop() {
@@ -74,6 +66,8 @@ public class ApplicationManager {
      } else if (Objects.equals(browser, IE)){
        wd = new InternetExplorerDriver();
      }
+     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+     wd.get(properties.getProperty("web.baseUrl"));
    }
     return wd;
   }
