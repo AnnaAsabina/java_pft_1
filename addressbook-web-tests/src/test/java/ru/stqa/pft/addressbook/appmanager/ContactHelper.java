@@ -129,6 +129,13 @@ public class ContactHelper extends HelperBase {
     click(By.name("add"));
     }
 
+  public void removeContactFromGroup(){
+    click(By.cssSelector("input[name='remove']"));
+  }
+  public void findGroupById(int id) {
+    click(By.cssSelector("#right"));
+    click(By.cssSelector("#right>select>option[value='" + id + "']"));
+  }
 
   public boolean isContactExist() {
     return isElementPresent(By.name("selected[]"));
