@@ -18,12 +18,13 @@ import static org.openqa.selenium.remote.BrowserType.*;
 public class ApplicationManager {
   private final Properties properties;
   private WebDriver wd;
-
   private String browser;
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
   public MailHelper mail;
+  private DbHelper dbHelper;
+  private SessionHelper sessionHelper;
 
 
   public ApplicationManager(String browser) {
@@ -33,9 +34,10 @@ public class ApplicationManager {
 
 
   public void init() throws IOException {
-
+    dbHelper = new DbHelper();
     String target = System.getProperty("target", "local");
      properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
   }
 
   public void stop() {
@@ -43,6 +45,13 @@ public class ApplicationManager {
       wd.quit();
     }
   }
+
+  public SessionHelper session(){
+         if(sessionHelper == null){
+                 sessionHelper = new SessionHelper(this);
+             }
+    return sessionHelper;
+       }
 
  public HttpSession newSession(){
     return new HttpSession(this);
@@ -73,6 +82,11 @@ public MailHelper mail(){
  }
  return mailHelper;
 }
+
+
+  public DbHelper db() {
+           return dbHelper;
+        }
 
   public WebDriver getDriver() {
 
