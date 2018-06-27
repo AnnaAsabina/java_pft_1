@@ -21,6 +21,6 @@ public SessionHelper(ApplicationManager app) {
 
   }
   public void goToUsersPage(){
-  wd.get(app.getProperty("web.baseUrl"+"manage_user_page.php"));
+  wd.get(app.getProperty("web.userURL"));
   }
 }
