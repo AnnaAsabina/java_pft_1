@@ -11,10 +11,11 @@ public SessionHelper(ApplicationManager app) {
 
   public void loginToMantis() {
   String username = app.getProperty("web.adminLogin");
-  String password = app.getProperty("web.adminPass");
+  String password = app.getProperty("web.adminPassword");
   wd.get(app.getProperty("web.baseUrl"));
 
     type(By.name("username"),username);
+    click(By.cssSelector("input[type='submit']"));
     type(By.name("password"), password);
            click(By.cssSelector("input[type='submit']"));
 
