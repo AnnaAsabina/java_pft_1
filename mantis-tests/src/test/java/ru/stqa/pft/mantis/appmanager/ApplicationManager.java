@@ -25,18 +25,20 @@ public class ApplicationManager {
   public MailHelper mail;
   private DbHelper dbHelper;
   private SessionHelper sessionHelper;
+  private JamesHelper jamesHelper;
+  private ChangingPasswordHelper changingPasswordHelper;
 
 
   public ApplicationManager(String browser) {
     this.browser = browser;
-    properties =new Properties();
+    properties = new Properties();
   }
 
 
   public void init() throws IOException {
     dbHelper = new DbHelper();
     String target = System.getProperty("target", "local");
-     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
   }
 
@@ -46,19 +48,26 @@ public class ApplicationManager {
     }
   }
 
-  public SessionHelper session(){
-         if(sessionHelper == null){
-                 sessionHelper = new SessionHelper(this);
-             }
+  public SessionHelper session() {
+    if (sessionHelper == null) {
+      sessionHelper = new SessionHelper(this);
+    }
     return sessionHelper;
-       }
+  }
 
- public HttpSession newSession(){
+  public JamesHelper james() {
+    if (jamesHelper == null) {
+      jamesHelper = new JamesHelper(this);
+    }
+    return jamesHelper;
+  }
+
+  public HttpSession newSession() {
     return new HttpSession(this);
- }
+  }
 
   public String getProperty(String key) {
-   return properties.getProperty(key);
+    return properties.getProperty(key);
 
   }
 
@@ -67,6 +76,13 @@ public class ApplicationManager {
       registrationHelper = new RegistrationHelper(this);
     }
     return registrationHelper;
+  }
+
+  public ChangingPasswordHelper chpass() {
+    if (changingPasswordHelper == null) {
+      changingPasswordHelper = new ChangingPasswordHelper(this);
+    }
+    return changingPasswordHelper;
   }
 
   public FtpHelper ftp() {
