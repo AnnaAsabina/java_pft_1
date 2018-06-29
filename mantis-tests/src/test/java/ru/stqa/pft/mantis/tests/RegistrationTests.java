@@ -5,6 +5,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
+import ru.stqa.pft.mantis.model.Users;
+import ru.stqa.pft.mantis.model.UsersData;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -19,9 +21,11 @@ public class RegistrationTests extends TestBase{
  }
   @Test
   public void testRegistration() throws IOException, MessagingException {
-    String username = String.format("user%s");
+    long now = System.currentTimeMillis();
+
+    String username = String.format("user%s", now);
     String password = "password";
-    String email = String.format("user%s@localhost.localdomain");
+    String email = String.format("user%s@localhost.localdomain", now);
     app.james().createUser(username,password);
     app.registration().start(username, email);
     //List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
