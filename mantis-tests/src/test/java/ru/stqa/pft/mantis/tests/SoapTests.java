@@ -12,6 +12,7 @@ import java.util.Set;
 public class SoapTests extends TestBase{
   @Test
   public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
+    skipIfNotFixed(2);
     Set<Project> projects = app.soap().getProjects();
     System.out.println(projects.size());
     for(Project project : projects){
@@ -27,5 +28,11 @@ public class SoapTests extends TestBase{
             .withDescription("Issue  description").withProject(projects.iterator().next());
    Issue created = app.soap().addIssue(issue);
     Assert.assertEquals(issue.getSummary(),created.getSummary());
+  }
+
+  @Test
+  public void testGetStatus() throws RemoteException, ServiceException, MalformedURLException {
+    int id = 1;
+    System.out.println(app.soap().getStatus(id));
   }
 }
