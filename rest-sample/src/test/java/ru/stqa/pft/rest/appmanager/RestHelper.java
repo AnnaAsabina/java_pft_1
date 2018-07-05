@@ -10,6 +10,7 @@ import org.apache.http.message.BasicNameValuePair;
 import ru.stqa.pft.rest.model.Issue;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.Set;
 
 public class RestHelper {
@@ -21,21 +22,30 @@ public class RestHelper {
 
 
   public Set<Issue> getIssues() throws IOException {
-    String json = getExecutor().execute(Request.Get("http://demo.bugify.com/api/issues.json?limit=1000"))
+    String json = getExecutor().execute(Request.Get("http://bugify.stqa.ru/api?limit=1000"))
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
-    return new Gson().fromJson(issues,new TypeToken<Set<Issue>>(){}.getType());
+    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
+    }.getType());
 
   }
 
-  private Executor getExecutor(){
-    return Executor.newInstance().auth("601f5dd9c548847641dc26728bc24eab","");
+  private Executor getExecutor() {
+    return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490", "");
   }
 
+  public Boolean getStatus(int issueId) throws IOException {
+    String json = getExecutor().execute(Request.Get("http://bugify.stqa.ru/api" + BigInteger.valueOf(issueId) + ".json")).returnContent().asString();
+    String status = new JsonParser().parse(json).getAsJsonObject().get("issues").getAsJsonArray().get(0).getAsJsonObject().get("state_name").getAsString();
+    if (status.equals("Закрыт")) {
+      return true;
+    }
+    return false;
+  }
 
   public int createIssue(Issue newIssue) throws IOException {
-    String json = getExecutor().execute(Request.Post("http://demo.bugify.com/api/issues.json")
+    String json = getExecutor().execute(Request.Post("http://bugify.stqa.ru/api.json")
             .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
                     new BasicNameValuePair("description", newIssue.getDescription())))
             .returnContent().asString();
