@@ -13,15 +13,17 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.Set;
 
+import static org.testng.Assert.assertEquals;
+
 public class RestTests {
   @Test
   public void createIssue() throws IOException {
     Set<Issue> oldIssues = getIssues();
-    Issue newIssue = new Issue();
+    Issue newIssue = new Issue().withSubject("Test Anna issue").withDescription("New test issue");
     int issueId = createIssue(newIssue);
     Set<Issue> newIssues = getIssues();
     oldIssues.add(newIssue.withId(issueId));
-    Assert.assertEquals(newIssues,oldIssues);
+    assertEquals(newIssues,oldIssues);
   }
 
 
@@ -30,12 +32,14 @@ public class RestTests {
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
-    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>(){}.getType());
+    return new Gson().fromJson(issues,new TypeToken<Set<Issue>>(){}.getType());
+
   }
 
-  private Executor getExecutor() {
-    return Executor.newInstance().auth("c4f7d1562ce4e8db908d9c169d4beb88", "");
+  private Executor getExecutor(){
+    return Executor.newInstance().auth("601f5dd9c548847641dc26728bc24eab","");
   }
+
 
   private int createIssue(Issue newIssue) throws IOException {
     String json = getExecutor().execute(Request.Post("http://demo.bugify.com/api/issues.json")
