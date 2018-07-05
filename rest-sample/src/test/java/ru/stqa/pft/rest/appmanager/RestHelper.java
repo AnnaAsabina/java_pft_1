@@ -36,7 +36,7 @@ public class RestHelper {
   }
 
   public Boolean getStatus(int issueId) throws IOException {
-    String json = getExecutor().execute(Request.Get("http://bugify.stqa.ru/api/issues" + BigInteger.valueOf(issueId) + ".json")).returnContent().asString();
+    String json = getExecutor().execute(Request.Get("http://bugify.stqa.ru/api/issues/" + BigInteger.valueOf(issueId) + ".json")).returnContent().asString();
     String status = new JsonParser().parse(json).getAsJsonObject().get("issues").getAsJsonArray().get(0).getAsJsonObject().get("state_name").getAsString();
     if (status.equals("Закрыт")) {
       return true;
