@@ -50,6 +50,7 @@ public class ApplicationManager {
         wd = new ChromeDriver();
       } else if (Objects.equals(browser, IE)) {
         wd = new InternetExplorerDriver();
+      }
       } else {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(browser);
@@ -65,7 +66,7 @@ public class ApplicationManager {
       sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
 
     }
-  }
+  
 
 
   public void stop() {
