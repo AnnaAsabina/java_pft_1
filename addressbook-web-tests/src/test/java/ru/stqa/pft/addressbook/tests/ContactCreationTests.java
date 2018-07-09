@@ -68,7 +68,7 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
-  @Test(dataProvider = "validContactsJson")
+  //@Test(dataProvider = "validContactsJson")
   public void contactCreationTests(ContactData contact) {
     Groups groups = app.db().groups();
     app.goTo().goToHomePage();
